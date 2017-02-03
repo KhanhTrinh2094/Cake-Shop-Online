@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <section id="body">     
+                    <style>
+                        .hotcollection > div > .span4:first-child { margin-left: 0px !important }
+
+                        .hotcollection > div > .product:nth-child(3) { margin-right: 0px !important } 
+
+                    </style>
+                    <section id="slideshow" class="row">
+                        <div class="span12 slideshow">
+                            <div class="flexslider">
+                                <ul class="slides unstyled">
+                                    <li class="slide" style="width: 100%; float: left; margin-right: -100%; display: none;">
+                                        <img src="#{root}/resource/upload/slideshow_1.jpg" class="slide-img" alt="" style="cursor: pointer;" />
+                                    </li>
+                                    <li class="slide" style="width: 100%; float: left; margin-right: -100%; display: none;">
+                                        <img src="#{root}/resource/upload/slideshow_2.jpg" class="slide-img" alt="" style="cursor: pointer;" />
+                                    </li>
+                                    <li class="slide" style="width: 100%; float: left; margin-right: -100%; display: none;">
+                                        <img src="#{root}/resource/upload/slideshow_3.jpg" class="slide-img" alt="" />
+                                    </li>
+                                    <li class="slide" style="width: 100%; float: left; margin-right: -100%; display: list-item;">
+                                        <img src="#{root}/resource/upload/slideshow_4.jpg" class="slide-img" alt="" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div id="index" class="clearfix">
+                        <div class="row">
+                            <div class="span12">
+                                <h1 class="featured" style="display: none">
+                                    Trang chủ
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div class="row products masonry" style="position: relative; height: 954px;">
+
+                            <c:forEach items="#{cakeMB.list}" var="row">
+                                <h:form>
+                                    <div class="masonry-item product span3 masonry-brick" style="position: absolute; top: 0px; left: 0px;">
+                                        <div class="image">
+                                            <h:commandLink action="#{cakeMB.detail(row.cakeID)}">
+                                                <img src="#{imagesPath}/#{row.cakeImage}" style="width: 219px; height: 219px" />
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="details">
+                                            <h:commandLink action="#{cakeMB.detail(row.cakeID)}" class="clearfix">
+                                                <h4 class="title">#{row.cakeName}</h4>
+                                                <span class="price">
+                                                    <h:outputText value="#{row.cakePrice}">
+                                                        <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                    </h:outputText> 
+                                                </span>
+                                            </h:commandLink>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </c:forEach>
+
+                            <div style="clear:both;"></div>
+                        </div> 
+                    </div>
+                    <strong>
+                        <strong>
+                            <script>
+                                $(".image").hover(
+                                        function() {
+                                            $(this).find(".details").show();
+                                        }, function() {
+                                    $(this).find(".details").hide();
+                                }
+                                );
+                            </script>
+                        </strong>
+                    </strong>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

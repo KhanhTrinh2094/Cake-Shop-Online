@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/AdminTemplate.xhtml">
+            <ui:define name="content">
+                <section id="main-content">
+                    <section class="wrapper site-min-height">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        Bill Manager
+                                        <span class="tools pull-right">
+                                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                            <a href="javascript:;" class="fa fa-times"></a>
+                                        </span>
+                                    </header>
+                                    <div class="panel-body">
+                                        <div class="adv-table">
+                                            <div class="clearfix">
+                                                <div class="btn-group pull-right">
+                                                    <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu pull-right">
+                                                        <li><a href="javascript: window.open('#{root}/report/OrderReport.xhtml', '', 'width=' + screen.width + ', height=' + screen.height);">Report</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <table  class="display table table-bordered table-striped table-hover" id="dynamic-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Username</th>
+                                                        <th>Order Time</th>
+                                                        <th>Total Price</th>
+                                                        <th>Order Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="#{orderADMB.list}" var="row">
+                                                        <tr>
+                                                            <td>#{row.orderID}</td>
+                                                            <td>#{row.username.username}</td>
+                                                            <td>
+                                                                <h:outputText value="#{row.orderTime}">
+                                                                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td>
+                                                                <h:outputText value="#{row.totalPrice}">
+                                                                    <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td>
+                                                                <c:choose>
+                                                                    <c:when test="#{row.orderStatus == 1}">
+                                                                        Unpaid
+                                                                    </c:when>
+                                                                    <c:when test="#{row.orderStatus == 2}">
+                                                                        Paid
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        Completed a purchase
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </td>
+                                                            <td>
+                                                                <h:form>
+                                                                    <h:commandLink value="Detail" action="#{orderADMB.detail(row.orderID)}" /> | 
+                                                                    <c:choose>
+                                                                        <c:when test="#{row.orderStatus == 1}">
+                                                                            <h:commandLink value="Paid" action="#{orderADMB.changeStatus(row.orderID, 2)}" /> | 
+                                                                        </c:when>
+                                                                        <c:when test="#{row.orderStatus == 2}">
+                                                                            <h:commandLink value="UnPaid" action="#{orderADMB.changeStatus(row.orderID, 1)}" /> | 
+                                                                            <h:commandLink value="Complete" action="#{orderADMB.changeStatus(row.orderID, 3)}" /> | 
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <h:commandLink value="Paid" action="#{orderADMB.changeStatus(row.orderID, 2)}" /> | 
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                    <h:commandLink value="Delete" action="#{orderADMB.delete(row.orderID)}" onclick="return confirm('You sure you want to delete ?');" />
+                                                                </h:form>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </ui:define>
+            <ui:define name="script">
+                <link rel="stylesheet" href="#{rootResource}/resource/assets/data-tables/DT_bootstrap.css" />
+                <link href="#{rootResource}/resource/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+                <link href="#{rootResource}/resource/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+                <style>
+                    tr.odd td.sorting_1 {
+                        background-color: #ffffff;
+                    }
+                </style>
+                <script src="#{rootResource}/resource/js/dynamic_table_init.js"></script>
+                <script type="text/javascript" language="javascript" src="#{rootResource}/resource/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+                <script type="text/javascript" src="#{rootResource}/resource/assets/data-tables/DT_bootstrap.js"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

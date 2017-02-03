@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/AdminTemplate.xhtml">
+            <ui:define name="content">
+                <section id="main-content">
+                    <section class="wrapper site-min-height">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        Detail Bill 
+                                    </header>
+                                    <div class="panel-body">
+                                        <h:form class="cmxform form-horizontal tasi-form" prependId="false">
+                                            <div class=" form">
+                                                <div class="form-group ">
+                                                    <label class="col-lg-2 control-label">ID : </label>
+                                                    <div class="col-lg-10">
+                                                        #{orderADMB.order.orderID}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="col-lg-2 control-label">Status : </label>
+                                                    <div class="col-lg-10">
+                                                        <c:choose>
+                                                            <c:when test="#{orderADMB.order.orderStatus == 1}">
+                                                                Unpaid
+                                                            </c:when>
+                                                            <c:when test="#{orderADMB.order.orderStatus == 2}">
+                                                                Paid
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                Completed a purchase
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="col-lg-2 control-label">Order By : </label>
+                                                    <div class="col-lg-10">
+                                                        #{orderADMB.order.username.customerName}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Order Time : </label>
+                                                    <div class="col-lg-10">
+                                                        <h:outputText value="#{orderADMB.order.orderTime}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+                                                        </h:outputText>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Delivery Date : </label>
+                                                    <div class="col-lg-10">
+                                                        <h:outputText value="#{orderADMB.order.deliveryDate}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                        </h:outputText>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Recipient Name : </label>
+                                                    <div class="col-lg-10">
+                                                        #{orderADMB.order.recipientName}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Recipient Address : </label>
+                                                    <div class="col-lg-10">
+                                                        #{orderADMB.order.recipientAddress}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Contact Number : </label>
+                                                    <div class="col-lg-10">
+                                                        #{orderADMB.order.contactNumber}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Total Price : </label>
+                                                    <div class="col-lg-10">
+                                                        <h:outputText value="#{orderADMB.order.totalPrice}">
+                                                            <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                        </h:outputText>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Note : </label>
+                                                    <div class="col-lg-10">
+                                                        #{orderADMB.order.note}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Product : </label>
+                                                    <div class="col-lg-10">
+                                                    </div>
+                                                </div>
+                                                <c:forEach items="#{orderADMB.order.orderDetailsCollection}" var="row">
+                                                    <div class="form-group ">
+                                                        <label class="control-label col-lg-2"></label>
+                                                        <div class="col-lg-10">
+                                                            <div class="col-lg-3">
+                                                                #{row.cakeID.cakeName}
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                #{row.quantity}
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <h:outputText value="#{row.price}">
+                                                                    <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                                </h:outputText>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
+
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </ui:define>
+            <ui:define name="script">
+                <link rel="stylesheet" href="#{rootResource}/resource/assets/data-tables/DT_bootstrap.css" />
+                <script type="text/javascript" src="#{rootResource}/resource/assets/ckeditor/ckeditor.js"></script>
+                <script type="text/javascript" src="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+                <link rel="stylesheet" type="text/css" href="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

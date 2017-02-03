@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/AdminTemplate.xhtml">
+            <ui:define name="content">
+                <section id="main-content">
+                    <section class="wrapper site-min-height">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        New Cake
+                                    </header>
+                                    <div class="panel-body">
+                                        <div class=" form">
+                                            <h:form class="cmxform form-horizontal tasi-form" enctype="multipart/form-data" prependId="false">
+                                                <div class="form-group ">
+
+                                                    <label for="cakeName" class="control-label col-lg-2">Title</label>
+                                                    <div class="col-lg-10">
+                                                        <h:inputText id="cakeName" class="form-control" value="#{cakeADMB.cakes.cakeName}" required="true" requiredMessage="Cake name can not be null">
+                                                            <f:validateLength minimum="3" maximum="300" />
+                                                        </h:inputText>
+                                                        <br />
+                                                        <h:messages for="cakeName" />
+                                                    </div>
+                                                    
+                                                    <label for="eventID" class="control-label col-lg-2">Event</label>
+                                                    <div class="col-lg-10">
+                                                        <h:selectOneMenu  class="form-control" id="eventID" value="#{cakeADMB.cakes.eventID}" required="true" requiredMessage="Please select event">
+                                                            <f:selectItems value="#{cakeADMB.eventItems}"/>
+                                                        </h:selectOneMenu>
+                                                        <br />
+                                                        <h:messages for="eventID" />
+                                                    </div>
+
+                                                    <label for="cakePrice" class="control-label col-lg-2">Price</label>
+                                                    <div class="col-lg-10">
+                                                        <h:inputText id="cakePrice" class="form-control" value="#{cakeADMB.cakes.cakePrice}" required="true" requiredMessage="Cake price can not be null">
+                                                            <f:validateLongRange minimum="10000" maximum="10000000" />
+                                                            <f:convertNumber />
+                                                        </h:inputText>
+                                                        <br />
+                                                        <h:messages for="cakePrice" />
+                                                    </div>
+
+                                                    <label for="cakeImage" class="control-label col-lg-2">Images</label>
+                                                    <div class="col-lg-10">
+                                                        <h:inputFile id="cakeImage" validator="#{cakeADMB.validateFile}" value="#{cakeADMB.file}" required="true" requiredMessage="Please select a image" />
+                                                        <br />
+                                                        <h:messages for="cakeImage" />
+                                                    </div>
+
+                                                    <label for="cakeDetails" class="control-label col-lg-2">Detail</label>
+                                                    <div class="col-lg-10">
+                                                        <h:inputTextarea id="cakeDetails" rows="6" class="form-control ckeditor" value="#{cakeADMB.cakes.cakeDetails}" required="true" requiredMessage="Detail can not be null">
+                                                            <f:validateLength minimum="3" />
+                                                        </h:inputTextarea>
+                                                        <br />
+                                                        <h:messages for="cakeDetails" />
+                                                    </div>
+
+                                                    <label for="cname" class="control-label col-lg-2">Is Egg ?</label>
+                                                    <div class="col-lg-10">
+                                                        <h:selectBooleanCheckbox value="#{cakeADMB.cakes.isEgg}" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-offset-2 col-lg-10">
+                                                        <h:commandButton action="#{cakeADMB.create()}" class="btn btn-danger" type="submit" value="Save" /> 
+                                                        <a href="CakeManager.xhtml"><button class="btn btn-default" type="button">Cancel</button></a>
+                                                    </div>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </ui:define>
+            <ui:define name="script">
+                <link rel="stylesheet" href="#{rootResource}/resource/assets/data-tables/DT_bootstrap.css" />
+                <script type="text/javascript" src="#{rootResource}/resource/assets/ckeditor/ckeditor.js"></script>
+                <script type="text/javascript" src="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+                <link rel="stylesheet" type="text/css" href="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

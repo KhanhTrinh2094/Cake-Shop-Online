@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <section id="body">     
+                    <div id="customer-login">
+                        <div class="row">
+                            <div id="login" class="span12">
+                                <h2 class="title">Checkout</h2>
+                                <h:form>
+                                    <div class="clearfix large_form">
+                                        <label class="login">Recipient Name : </label><br />
+                                        <h:inputText id="name" value="#{checkoutMB.order.recipientName}" class="large" size="30" required="true" requiredMessage="Recipient name can not be empty" >
+                                            <f:validateLength minimum="3" maximum="50" />
+                                        </h:inputText>
+                                        <h:messages for="name" />
+                                    </div>
+
+                                    <div class="clearfix large_form">
+                                        <label class="login">Recipient Address : </label><br />
+                                        <h:inputText id="address" value="#{checkoutMB.order.recipientAddress}" class="large" size="30" required="true" requiredMessage="Address can not be empty" >
+                                            <f:validateLength minimum="3" maximum="200" />
+                                        </h:inputText>
+                                        <h:messages for="address" />
+                                    </div>
+
+                                    <div class="clearfix large_form">
+                                        <label class="login">Contact Number : </label><br />
+                                        <h:inputText id="contact" value="#{checkoutMB.order.contactNumber}" class="large" size="30" required="true" requiredMessage="Contact number can not be empty" >
+                                            <f:validateLength minimum="10" maximum="11" />
+                                            <f:validateRegex pattern="[0-9]{10,11}" />
+                                        </h:inputText>
+                                        <h:messages for="contact" />
+                                    </div>
+
+                                    <div class="clearfix large_form">
+                                        <label class="login">Delivery Date : </label><br />
+                                        <h:inputText id="delivery" value="#{checkoutMB.order.deliveryDate}" class="large" size="30"  required="true" requiredMessage="Delivery Date can not be empty" >
+                                            <f:validateLength minimum="3" maximum="50" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                        </h:inputText>
+                                        <h:messages for="delivery" />
+                                    </div>
+
+                                    <div class="clearfix large_form">
+                                        <label class="login">Note : </label><br />
+                                        <h:inputTextarea value="#{checkoutMB.order.note}" class="large" />
+                                    </div>
+                                    <div class="action_bottom">
+                                        <h:commandButton class="btn" value="CheckOut" action="#{checkoutMB.checkOut()}" />
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

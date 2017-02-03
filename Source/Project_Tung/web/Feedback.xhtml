@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Feedback</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <section id="body">
+                    <div id="collection">
+                        <div class="row title">
+                            <div class="span12">
+                                <h1>Send Feedback</h1>
+                                <section class="SECTION_1">
+                                    <div class="DIV_3">
+                                        <h4 class="H4_4">
+                                            #{message}
+                                        </h4>
+                                        <c:if test="#{not empty success}">
+                                            <script>alert('#{success}');</script>
+                                        </c:if>
+                                        <h:form>
+                                            <div class="DIV_5">
+                                                <fieldset class="FIELDSET_6">
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Detail :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputTextarea style="min-height: 100px; min-width: 400px;" id="detail" class="INPUT_10" value="#{feedbackMB.feedback.detail}" required="true" requiredMessage="Detail can not be empty" rows="6" >
+                                                                <f:validateLength minimum="3" maximum="30" />
+                                                            </h:inputTextarea>
+                                                            <br class="BR_11" />
+                                                            <h:message for="detail" />
+                                                        </div>
+                                                    </div>
+                                                    <h:commandButton value="Send" class="INPUT_19" action="#{feedbackMB.send()}"/>
+                                                </fieldset>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

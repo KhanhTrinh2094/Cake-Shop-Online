@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <hr style="margin-top: 20px"/>
+            <strong>
+                <strong>
+                    <footer id="footer">
+                        <div class="row footer-columns">
+                            <section class="span4 about-us">
+                                <h3>About Us</h3>
+                                Project Make Cake Website.
+                                <br />
+                                Tran Quang Tung
+                                <br />
+                                Dang Tran Quoc Thinh
+                                <br />
+                                Nguyen Vo Thanh Huy
+                            </section>
+                            <section class="span4 contact-us">
+                                <h3>Contact Us</h3>
+                                Make Cake - Web Shop Online<br />
+                                Lầu 6 - 65 Trần Quốc Hoàn - P4 - Q.Tân Bình - Tp. Hồ Chí Minh<br />
+                                Email : hi@google.com <br />
+                                Hotline:  1900.190.190 <br />
+                            </section>
+
+
+                            <section class="span4 newsletter">
+                                <h3>Newsletter</h3>
+                                <h:form class="mc-embedded-subscribe-form">
+                                    <h:inputText class="text" value="#{searchMB.name}" />
+                                    <h:commandButton action="#{searchMB.searchByName()}" class="btn slim" value="Search" />
+                                </h:form>
+                            </section>
+                        </div>
+
+                        <div class="row payments-and-notices">
+                            <section class="span4 footer-social">
+                                <ul class="unstyled clearfix">
+                                    <li><a href="" class="icon-social twitter ir">Twitter</a></li>
+                                    <li><a href="" class="icon-social facebook ir">Facebook</a></li>
+                                    <li><a href="" class="icon-social google ir">Google+</a></li>
+                                    <li><a href="" class="icon-social youtube ir">YouTube</a></li>
+                                    <li><a href="" class="icon-social vimeo ir">Vimeo</a></li>
+                                    <li><a href="" class="icon-social instagram ir">Instagram</a></li>
+                                    <li><a href="" class="icon-social pinterest ir">Pinterest</a></li>         
+                                    <li><a href="" class="icon-social atom ir">Blog feed</a></li>
+                                </ul>
+                            </section>
+                            <section class="span8 shop-notices">
+                                Copyright © 2015 Team 1
+                                | All prices in VND
+                                | Tran Quang Tung
+                            </section>
+                        </div>
+                    </footer>
+                </strong>
+            </strong>
+            <script src='#{root}/resource/js/jquery.slider.js?v=46' type='text/javascript'></script>
+            <script src='#{root}/resource/js/jquery.masonry.js?v=46' type='text/javascript'></script>
+            <script src='#{root}/resource/js/jquery.zoom.js?v=46' type='text/javascript'></script>
+            <script src='#{root}/resource/js/fancy.js?v=46' type='text/javascript'></script>
+            <script src='#{root}/resource/js/shop.js?v=46' type='text/javascript'></script>
+        </ui:composition>
+    </h:body>
+</html>
+

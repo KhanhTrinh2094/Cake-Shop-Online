@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <c:set var="root" value="#{request.contextPath}/admin" />
+        <c:set var="rootResource" value="#{request.contextPath}" />
+        <meta charset="utf-8"/>
+        <title>Login Page</title>
+        <link href="#{rootResource}/resource/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="#{rootResource}/resource/css/bootstrap-reset.css" rel="stylesheet"/>
+        <link href="#{rootResource}/resource/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="#{rootResource}/resource/css/style.css" rel="stylesheet"/>
+        <link href="#{rootResource}/resource/css/style-responsive.css" rel="stylesheet" />
+        <!--[if lt IE 9]>
+        <script src="#{rootResource}/resource/js/html5shiv.js"></script>
+        <script src="#{rootResource}/resource/js/respond.min.js"></script>
+        <![endif]-->
+    </h:head>
+    <h:body class="login-body">
+        <c:if test="#{not empty session.getAttribute('adminuser')}">
+            #{facesContext.externalContext.redirect("index.xhtml")}
+        </c:if>
+        <div class="container">
+            <h:form class="form-signin" id="form" prependId="false">
+                <h2 class="form-signin-heading">sign in now</h2>
+                <div class="login-wrap">
+                    #{message}
+                    <h:inputText class="form-control" value="#{loginADMB.admin.username}" id="username" required="true" requiredMessage="Username can not be empty">
+                        <f:validateLength minimum="3" maximum="20" />
+                    </h:inputText>
+                    <h:messages for="username" />
+                    <h:inputSecret class="form-control" value="#{loginADMB.admin.password}" id="password" required="true" requiredMessage="Password can not be empty">
+                        <f:validateLength minimum="3" maximum="20" />
+                    </h:inputSecret>
+                    <h:messages for="password"/> 
+                    <h:commandButton class="btn btn-lg btn-login btn-block" action="#{loginADMB.login()}" value="Sign in" />
+                </div>
+            </h:form>
+        </div>
+        <script src="#{rootResource}/resource/js/jquery.js"></script>
+        <script src="#{rootResource}/resource/js/bootstrap.min.js"></script>
+        <script>
+            $("#username").attr("placeholder", "Username");
+            $("#password").attr("placeholder", "Password");
+        </script>
+    </h:body>
+</html>
+

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/AdminTemplate.xhtml">
+            <ui:define name="content">
+                <section id="main-content">
+                    <section class="wrapper site-min-height">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        Detail Cake
+                                    </header>
+                                    <div class="panel-body">
+                                        <h:form class="cmxform form-horizontal tasi-form" prependId="false">
+                                            <div class=" form">
+                                                <div class="form-group ">
+                                                    <label class="col-lg-2 control-label">ID : </label>
+                                                    <div class="col-lg-10">
+                                                        #{cakeADMB.cakes.cakeID}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Title : </label>
+                                                    <div class="col-lg-10">
+                                                        #{cakeADMB.cakes.cakeName}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Event : </label>
+                                                    <div class="col-lg-10">
+                                                        #{cakeADMB.cakes.eventID.eventName}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Price : </label>
+                                                    <div class="col-lg-10">
+                                                        <h:outputText value="#{cakeADMB.cakes.cakePrice}">
+                                                            <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                        </h:outputText>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Image : </label>
+                                                    <div class="col-lg-10">
+                                                        <img src="#{rootImage}/#{cakeADMB.cakes.cakeImage}" style="width: 50px; height: 50px;" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Detail : </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea id="cakeDetails" rows="6" class="form-control ckeditor">#{cakeADMB.cakes.cakeDetails}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </ui:define>
+            <ui:define name="script">
+                <link rel="stylesheet" href="#{rootResource}/resource/assets/data-tables/DT_bootstrap.css" />
+                <script type="text/javascript" src="#{rootResource}/resource/assets/ckeditor/ckeditor.js"></script>
+                <script type="text/javascript" src="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+                <link rel="stylesheet" type="text/css" href="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

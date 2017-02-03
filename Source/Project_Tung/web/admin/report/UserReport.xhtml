@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>User Report</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                text-align: left;
+            }
+            table#t01 {
+                width: 100%;    
+                background-color: #f1f1c1;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <c:set var="rootImage" value="#{request.contextPath}/resource/upload" />
+        <h1 align="center">User Report</h1>
+        Date : 
+        <h:outputText value="#{session.lastAccessedTime}">
+            <f:convertDateTime pattern="dd/MM/yyyy" />
+        </h:outputText>
+        <br /><br />
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="#{userADMB.list}" var="row">
+                    <tr>
+                        <td>#{row.username}</td>
+                        <td>#{row.customerName}</td>
+                        <td>#{row.customerAddress}</td>
+                        <td>#{row.customerEmail}</td>
+                        <td>#{row.customerMobile}</td>
+                        <td>
+                            <h:outputText value="#{row.dob}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <br />
+        Total Number Of User #{userADMB.list.size()}
+    </h:body>
+</html>
+

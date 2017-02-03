@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/AdminTemplate.xhtml">
+            <ui:define name="content">
+                <section id="main-content">
+                    <section class="wrapper site-min-height">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        System Statitics
+                                    </header>
+                                    <div class="panel-body">
+                                        <h:form class="cmxform form-horizontal tasi-form" prependId="false">
+                                            <div class=" form">
+                                                <div class="form-group ">
+                                                    <label class="col-lg-2 control-label">Total Cake : </label>
+                                                    <div class="col-lg-10">
+                                                        #{indexADMB.countCake}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Total Event : </label>
+                                                    <div class="col-lg-10">
+                                                        #{indexADMB.countEvent}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Total Order : </label>
+                                                    <div class="col-lg-10">
+                                                        #{indexADMB.countOrder}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Total User : </label>
+                                                    <div class="col-lg-10">
+                                                        #{indexADMB.countUser}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-2">Total Price : </label>
+                                                    <div class="col-lg-10">
+                                                        <h:outputText value="#{indexADMB.totalPrice}">
+                                                            <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                        </h:outputText>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </ui:define>
+            <ui:define name="script">
+                <link rel="stylesheet" href="#{rootResource}/resource/assets/data-tables/DT_bootstrap.css" />
+                <script type="text/javascript" src="#{rootResource}/resource/assets/ckeditor/ckeditor.js"></script>
+                <script type="text/javascript" src="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+                <link rel="stylesheet" type="text/css" href="#{rootResource}/resource/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

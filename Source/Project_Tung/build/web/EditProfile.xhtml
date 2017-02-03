@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Feedback</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <section id="body">     
+
+                    <div id="customer-login">
+                        <div class="row">
+                            <div id="login" class="span12">
+                                <h2 class="title">Update Profile</h2>
+                                <h:form>
+                                    <div id="first_name" class="clearfix large_form">
+                                        <label for="first_name" class="login">Fullname</label><br />
+                                        <h:inputText id="name" value="#{userMB.customer.customerName}" class="large" required="true" requiredMessage="Fullname can not be null" >
+                                            <f:validateLength minimum="3" maximum="50" />
+                                        </h:inputText>
+                                        <h:messages for="name" />
+                                    </div>
+
+                                    <div id="last_name" class="clearfix large_form">
+                                        <label for="last_name" class="login">Address</label><br />
+                                        <h:inputText id="address" value="#{userMB.customer.customerAddress}" class="large" required="true" requiredMessage="Address can not be null" >
+                                            <f:validateLength minimum="3" maximum="200" />
+                                        </h:inputText>
+                                        <h:messages for="address" />
+                                    </div>
+
+                                    <div id="email" class="clearfix large_form">
+                                        <label for="email" class="login">Email</label><br />
+                                        <h:inputText id="email" value="#{userMB.customer.customerEmail}" class="large" required="true" requiredMessage="Email can not be null">
+                                            <f:validateLength minimum="3" maximum="100" />
+                                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                        </h:inputText>
+                                        <h:messages for="email" />
+                                    </div>
+
+                                    <div id="password" class="clearfix large_form">
+                                        <label for="password" class="login">Mobile</label><br />
+                                        <h:inputText id="mobile" value="#{userMB.customer.customerMobile}" class="large" required="true" requiredMessage="Mobile can not be null" >
+                                            <f:validateLength minimum="3" maximum="200" />
+                                        </h:inputText>
+                                        <h:messages for="mobile" />
+                                    </div>
+
+                                    <div id="password" class="clearfix large_form">
+                                        <label for="password" class="login">DOB</label><br />
+                                        <h:inputText id="dob" value="#{userMB.customer.dob}" class="large" required="true" requiredMessage="Mobile can not be null" >
+                                            <f:validateLength minimum="3" maximum="50" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                        </h:inputText>
+                                        <h:messages for="dob" />
+                                    </div>
+
+                                    <div class="action_bottom">
+                                        <h:commandButton class="btn" value="Update" action="#{userMB.update()}" />
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <section id="body">     
+                    <div id="cart">
+                        <div class="row">
+                            <c:choose>
+                                <c:when test="#{empty session.getAttribute('CART')}">
+                                    <div class="span12 expanded-message">
+                                        <h2>Your cart is empty</h2>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="span12">
+                                        <h1>Your cart</h1>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="image">&nbsp;</th>
+                                                    <th class="item" style="text-align: center">Item</th>
+                                                    <th class="qty" style="text-align: center">Quantity</th>
+                                                    <th class="price" style="text-align: center">Price</th>
+                                                    <th class="total" style="text-align: center">Total</th>
+                                                    <th class="remove">Remove</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:set var="total" value="0" />
+                                                <c:forEach items="#{cartManaged.cart}" var="cart">
+
+                                                    <tr>
+                                                        <td class="image">
+                                                            <div class="product_image">
+                                                                <a href="">
+                                                                    <img src="#{imagesPath}/#{cart.value.image}" style="width: 160px; height: 160px;" />
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="item" style="text-align: center;">
+                                                            <h:form>
+                                                                <h:commandLink action="#{cakeMB.detail(cart.value.code)}">
+                                                                    <strong>#{cart.value.title}</strong>
+                                                                </h:commandLink>
+                                                            </h:form>
+                                                            <div class="item-description">
+                                                            </div>
+                                                        </td>
+                                                        <h:form>
+                                                            <td class="qty">
+                                                                <h:inputText id="quantity" class="tc item-quantity" value="#{cart.value.quantity}">
+                                                                    <f:convertNumber />
+                                                                </h:inputText>
+                                                                &nbsp;
+                                                            </td>
+                                                            <td class="price">
+                                                                <h:outputText value="#{cart.value.price}">
+                                                                    <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td class="total">
+                                                                <h:outputText value="#{cart.value.price * cart.value.quantity}">
+                                                                    <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td class="remove">
+                                                                <h:commandLink class="cart" action="#{cartManaged.updateCart(cart)}" value="Update" /> | 
+                                                                <h:commandLink class="cart" action="#{cartManaged.removeCart(cart.key)}" value="Remove" />
+                                                            </td>
+                                                        </h:form>
+                                                    </tr>
+
+                                                    <c:set var="total" value="#{total + cart.value.price * cart.value.quantity}" />
+                                                </c:forEach>
+
+                                                <tr class="summary">
+                                                    <td class="image">&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td class="price">
+
+                                                        <span class="total">
+                                                            <strong>
+                                                                <h:outputText value="#{total}">
+                                                                    <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                                </h:outputText>
+                                                            </strong>
+                                                        </span>
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h:form id="cart" prependId="false">
+                                            <div class="buttons clearfix">
+                                                <h:commandButton id="checkout" class="btn" value="Checkout" action="#{checkoutMB.preCheckout()}" />
+                                                <h:commandButton id="update-cart" class="btn" value="Go Home" action="#{cartManaged.goHome()}" />
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

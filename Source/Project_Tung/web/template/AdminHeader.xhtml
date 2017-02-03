@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <header class="header white-bg">
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+                </div>
+                <a href="index.html" class="logo">Cake <span>Website</span></a>
+                
+                <div class="top-nav ">
+                    <ul class="nav pull-right top-menu">
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <img alt="" src="#{rootResource}/resource/img/avatar1_small.jpg"/>
+                                    <span class="username">#{session.getAttribute('adminuser')}</span>
+                                    <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+                                <li><a href="#"></a></li>
+                                <li><a href="#{root}/ChangePass.xhtml"><i class="fa fa-cog"></i> Change Pass</a></li>
+                                <li><a href="#"> </a></li>
+                                <li><h:form><h:commandLink action="#{loginADMB.logout()}"><i class="fa fa-key"></i> Log Out</h:commandLink></h:form></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+        </ui:composition>
+    </h:body>
+</html>
+

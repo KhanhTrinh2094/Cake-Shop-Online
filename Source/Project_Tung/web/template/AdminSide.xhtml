@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            
+            <aside>
+                #{view.viewId}
+                <div id="sidebar"  class="nav-collapse ">
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            <a id="index" href="#{root}">
+                                <i class="fa fa-dashboard"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a id="CakeManager" href="#{root}/CakeManager.xhtml" >
+                                <i class="fa fa-cutlery"></i>
+                                <span>Cake Manager</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="UserManager" href="#{root}/UserManager.xhtml" >
+                                <i class="fa fa-user"></i>
+                                <span>User Manager</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="EventManager" href="#{root}/EventManager.xhtml" >
+                                <i class="fa fa-anchor"></i>
+                                <span>Event Manager</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="FeedBackManager" href="#{root}/FeedBackManager.xhtml" >
+                                <i class="fa fa-comment"></i>
+                                <span>Feedback Manager</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="OrderManager" href="#{root}/OrderManager.xhtml" >
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Order Manager</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="SystemStatitics" href="#{root}/SystemStatitics.xhtml" >
+                                <i class="fa fa-tasks"></i>
+                                <span>System Statitics</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </ui:composition>
+    </h:body>
+</html>
+

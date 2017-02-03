@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <script src="#{rootResource}/resource/js/jquery.js"></script>
+            <script src="#{rootResource}/resource/js/bootstrap.min.js"></script>
+            <script class="include" type="text/javascript" src="#{rootResource}/resource/js/jquery.dcjqaccordion.2.7.js"></script>
+            <script src="#{rootResource}/resource/js/jquery.scrollTo.min.js"></script>
+            <script src="#{rootResource}/resource/js/jquery.nicescroll.js" type="text/javascript"></script>
+            <script src="#{rootResource}/resource/js/jquery.sparkline.js" type="text/javascript"></script>
+            <script src="#{rootResource}/resource/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+            <script src="#{rootResource}/resource/js/owl.carousel.js" ></script>
+            <script src="#{rootResource}/resource/js/jquery.customSelect.min.js" ></script>
+            <script src="#{rootResource}/resource/js/respond.min.js" ></script>
+            <script src="#{rootResource}/resource/js/slidebars.min.js"></script>
+            <script src="#{rootResource}/resource/js/common-scripts.js"></script>
+            <script>
+                var currentPage = '#{view.viewId}';
+                currentPage = currentPage.replace("/admin/", "");
+                currentPage = currentPage.replace(".xhtml", "");
+                document.getElementById(currentPage).setAttribute("class", "active");
+            </script>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Register</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <c:if test="#{not empty session.getAttribute('username')}">
+                    #{facesContext.externalContext.redirect("index.xhtml")}
+                </c:if>
+                <section id="body">
+                    <div id="collection">
+                        <div class="row title">
+                            <div class="span12">
+                                <h1>Register</h1>
+                                <section class="SECTION_1">
+                                    <h2 class="H2_2">
+                                        Welcome to Cake Website
+                                    </h2>
+                                    <div class="DIV_3">
+                                        <h4 class="H4_4">
+                                            Don't have an account? Please register
+                                        </h4>
+                                        <h4 class="H4_4">
+                                            #{message}
+                                        </h4>
+                                        <h:form>
+                                            <div class="DIV_5">
+                                                <fieldset class="FIELDSET_6">
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Username :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputText id="username" class="INPUT_10" value="#{registerMB.customer.username}" required="true" requiredMessage="Username can not be empty">
+                                                                <f:validateLength minimum="3" maximum="30" />
+                                                            </h:inputText>
+                                                            <br class="BR_11" />
+                                                            <h:message for="username" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Password :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputSecret id="password" class="INPUT_10" value="#{registerMB.customer.password}" required="true" requiredMessage="Password can not be empty">
+                                                                <f:validateLength minimum="3" maximum="30" />
+                                                            </h:inputSecret>
+                                                            <br class="BR_11" />
+                                                            <h:message for="password" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="DIV_12">
+                                                        <label class="LABEL_13">
+                                                            Re enter Password:
+                                                        </label>
+                                                        <div class="DIV_14">
+                                                            <h:inputSecret id="re-password" class="INPUT_10" value="#{registerMB.rePassword}" required="true" requiredMessage="Re-Password can not be empty">
+                                                                <f:validateLength minimum="3" maximum="30" />
+                                                            </h:inputSecret>
+                                                            <br class="BR_11" />
+                                                            <h:message for="re-password" />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Fullname :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputText id="fullname" class="INPUT_10" value="#{registerMB.customer.customerName}" required="true" requiredMessage="Fullname can not be empty">
+                                                                <f:validateLength minimum="3" maximum="50" />
+                                                            </h:inputText>
+                                                            <br class="BR_11" />
+                                                            <h:message for="fullname" />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Address :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputText id="address" class="INPUT_10" value="#{registerMB.customer.customerAddress}" required="true" requiredMessage="Address can not be empty">
+                                                                <f:validateLength minimum="3" maximum="500" />
+                                                            </h:inputText>
+                                                            <br class="BR_11" />
+                                                            <h:message for="address" />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Email :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputText id="email" class="INPUT_10" value="#{registerMB.customer.customerEmail}" required="true" requiredMessage="Email can not be empty">
+                                                                <f:validateLength minimum="3" maximum="100" />
+                                                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                                            </h:inputText>
+                                                            <br class="BR_11" />
+                                                            <h:message for="email" />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Mobile :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputText id="mobile" class="INPUT_10" value="#{registerMB.customer.customerMobile}" required="true" requiredMessage="Mobile can not be empty">
+                                                                <f:validateLength minimum="10" maximum="11" />
+                                                                <f:validateRegex pattern="[0-9]{10,11}" />
+                                                            </h:inputText>
+                                                            <br class="BR_11" />
+                                                            <h:message for="mobile" />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="DIV_7">
+
+                                                        <label class="LABEL_8">
+                                                            Birthday :
+                                                        </label>
+                                                        <div class="DIV_9">
+                                                            <h:inputText id="birthday" class="INPUT_10" value="#{registerMB.customer.dob}" required="true" requiredMessage="Birthday can not be empty">
+                                                                <f:validateLength minimum="3" maximum="50" />
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                            </h:inputText>
+                                                            <br class="BR_11" />
+                                                            <h:message for="birthday" />
+                                                        </div>
+                                                    </div>
+                                                    <h:commandButton value="Register" class="INPUT_19" action="#{registerMB.register()}"/>
+                                                </fieldset>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

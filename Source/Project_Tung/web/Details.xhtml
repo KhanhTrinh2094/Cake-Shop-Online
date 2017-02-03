@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <section id="body">     
+                    <div id="product" class="dove-raspberry-dark-chocolate-swirl-squares-30-piece-bag-3">
+                        <div class="row">
+                            <div class="span5">
+                                <div class="image featured">
+                                    <a href="#{imagesPath}/#{cakeMB.cake.cakeImage}" class="cloud-zoom" rel="position: 'inside', showTitle: 'false'" id="placeholder">
+                                        <img src="#{imagesPath}/#{cakeMB.cake.cakeImage}" />
+                                    </a>
+                                    <a href="#{imagesPath}/#{cakeMB.cake.cakeImage}" class="zoom" id="zoom-image" style="display:none;">Enlarge Image</a>
+                                </div>
+                            </div>
+                            <div class="span7" style="float:right">
+                                <h1 class="title" itemprop="name">#{cakeMB.cake.cakeName}</h1>
+                                <div class="purchase">
+                                    <h2 class="price" id="price-preview">
+                                        <span itemprop="price">
+                                            <h:outputText value="#{cakeMB.cake.cakePrice}">
+                                                <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                            </h:outputText>
+                                        </span>
+                                    </h2>
+                                </div>
+
+                                <div class="description" itemprop="description">
+                                    <h:outputText value="#{cakeMB.cake.cakeDetails}" escape="false" />
+                                </div>
+                                <c:if test="#{not empty session.getAttribute('username')}">
+                                    <h:form  id="add-item-form" class="variants clearfix">
+                                        <div class="purchase-section">
+                                            <div class="purchase">
+                                                <h:commandButton  value="Add to cart" class="btn" action="#{cartManaged.addCart(cakeMB.cake)}" />
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </c:if>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span12">
+                                <h2>Related Cake</h2>
+                            </div>
+                        </div>
+                        <div class="row products masonry">
+                            <c:forEach items="#{cakeMB.relatedCake}" var="row">
+                                <div class="masonry-item product span3">
+                                    <div class="image">
+                                        <a href="">
+                                            <img src="#{imagesPath}/#{row.cakeImage}" style="width: 219px; height: 219px" />
+                                        </a>
+                                    </div>
+                                    <div class="details">
+                                        <h:form>
+                                            <h:commandLink action="#{cakeMB.detail(row.cakeID)}" class="clearfix">
+                                                <h4 class="title">#{row.cakeName}</h4>
+                                                <span class="price">
+                                                    <h:outputText value="#{row.cakePrice}">
+                                                        <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                    </h:outputText>
+                                                </span>
+                                            </h:commandLink>
+                                        </h:form>
+                                    </div> 
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div> 
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Feedback</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/UserTemplate.xhtml">
+            <ui:define name="content">
+                <section id="body">     
+                    <div id="customer-account">
+                        <div class="row">
+                            <div class="span12">
+                                <h:form>
+                                    <h1 class="title clearfix">User Profile
+                                        <span class="note">
+                                            <h:commandLink action="#{loginMB.logout()}" value="Logout" />
+                                        </span>
+                                    </h1>
+                                </h:form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div id="customer_orders" class="span8">
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="date">Order Date</th>
+                                            <th>Recipient Name</th>
+                                            <th class="payment_status">Delivery Date</th>
+                                            <th class="fulfillment_status">Order Status</th>
+                                            <th class="total">Total Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{userMB.listOrder}" var="row">
+                                            <tr>
+                                                <td class="date">
+                                                    <h:outputText value="#{row.orderTime}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                    </h:outputText>
+                                                </td>
+                                                <td>#{row.recipientName}</td>
+                                                <td class="payment_status">
+                                                    <h:outputText value="#{row.deliveryDate}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                    </h:outputText>
+                                                </td>
+                                                <td class="fulfillment_status">
+                                                    <c:choose>
+                                                        <c:when test="#{row.orderStatus == 1}">
+                                                            Unpaid
+                                                        </c:when>
+                                                        <c:when test="#{row.orderStatus == 2}">
+                                                            Paid
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            Completed a purchase
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                                <td class="total">
+                                                    <h:outputText value="#{row.totalPrice}">
+                                                        <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                    </h:outputText>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="customer_sidebar" class="span4">
+                                <h2>#{userMB.customer.username}</h2>
+                                <p class="email note">#{userMB.customer.customerName}</p>
+                                <div class="address note">
+                                    <p>#{userMB.customer.customerAddress}</p>
+                                    <p>#{userMB.customer.customerMobile}</p>
+                                    <p>
+                                        <h:outputText value="#{userMB.customer.dob}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p>
+                                    <h:form>
+                                        <h:commandLink action="#{userMB.edit()}" value="Update Profile" />
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

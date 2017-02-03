@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <c:set var="root" value="#{request.contextPath}" />
+        <c:set var="imagesPath" value="#{request.contextPath}/resource/upload" />
+        <title>Cake Make</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="#{root}/resource/css/shop.css" rel="stylesheet" type="text/css" media="all"/>
+        <script src="#{root}/resource/js/html5shiv.js" type="text/javascript"></script>
+        <script type="text/javascript" src="#{root}/resource/js/jquery.min.js"></script>
+        <script src="#{root}/resource/js/option_selection.js" type="text/javascript"></script>
+        <script src="#{root}/resource/js/api.jquery.js" type="text/javascript"></script>
+    </h:head>
+    <h:body class="" style="padding-top: 0px;">
+        <div class="wrapper">
+            <ui:insert name="header" >
+                <ui:include src="/template/UserHeader.xhtml" />
+            </ui:insert>
+            <ui:insert name="content" >
+                <ui:include src="/template/UserHeader.xhtml" />
+            </ui:insert>
+            <ui:insert name="footer" >
+                <ui:include src="/template/UserFooter.xhtml" />
+            </ui:insert>
+        </div>
+    </h:body>
+</html>
+

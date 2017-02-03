@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <c:set var="root" value="#{request.contextPath}/admin" />
+        <c:set var="rootResource" value="#{request.contextPath}" />
+        <c:set var="rootImage" value="#{request.contextPath}/resource/upload" />
+        <meta charset="utf-8"/>
+        <title>Admin Panel</title>
+        <link href="#{rootResource}/resource/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="#{rootResource}/resource/css/bootstrap-reset.css" rel="stylesheet"/>
+        <link href="#{rootResource}/resource/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="#{rootResource}/resource/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link rel="stylesheet" href="#{rootResource}/resource/css/owl.carousel.css" type="text/css"/>
+        <link href="#{rootResource}/resource/css/slidebars.css" rel="stylesheet"/>
+        <link href="#{rootResource}/resource/css/style.css" rel="stylesheet"/>
+        <link href="#{rootResource}/resource/css/style-responsive.css" rel="stylesheet" />
+        <!--[if lt IE 9]>
+          <script src="#{rootResource}/resource/js/html5shiv.js"></script>
+          <script src="#{rootResource}/resource/js/respond.min.js"></script>
+        <![endif]-->
+    </h:head>
+    <h:body>
+        <c:if test="#{(view.viewId != '/Login.xhtml') and (empty session.getAttribute('adminuser'))}">
+            #{facesContext.externalContext.redirect("Login.xhtml")}
+        </c:if>
+        <section id="container" >
+            <ui:insert name="header" >
+                <ui:include src="/template/AdminHeader.xhtml" />
+            </ui:insert>
+            <ui:insert name="aside" >
+                <ui:include src="/template/AdminSide.xhtml" />
+            </ui:insert>
+            <ui:insert name="content" >
+                <ui:include src="/template/AdminHeader.xhtml" />
+            </ui:insert>
+            <ui:insert name="footer" >
+                <ui:include src="/template/AdminFooter.xhtml" />
+            </ui:insert>
+            <ui:insert name="library">
+                <ui:include src="/template/AdminLibrary.xhtml" />
+            </ui:insert>
+            <ui:insert name="script">
+                <ui:include src="/template/AdminScript.xhtml" />
+            </ui:insert>
+        </section>
+    </h:body>
+</html>
+

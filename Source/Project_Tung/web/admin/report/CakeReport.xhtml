@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cake Report</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                text-align: left;
+            }
+            table#t01 {
+                width: 100%;    
+                background-color: #f1f1c1;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <c:set var="rootImage" value="#{request.contextPath}/resource/upload" />
+        <h1 align="center">Cake Report</h1>
+        Date : 
+        <h:outputText value="#{session.lastAccessedTime}">
+            <f:convertDateTime pattern="dd/MM/yyyy" />
+        </h:outputText>
+        <br /><br />
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Event</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>IsEgg</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="#{cakeADMB.list}" var="row">
+                    <tr>
+                        <td>#{row.cakeID}</td>
+                        <td>
+                            <h6>#{row.cakeName}</h6>
+                        </td>
+                        <td>#{row.eventID.eventName}</td>
+                        <td><img src="#{rootImage}/#{row.cakeImage}" style="width: 50px; height: 50px;" /></td>
+                        <td>
+                            <h:outputText value="#{row.cakePrice}">
+                                <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                            </h:outputText>
+                        </td>
+                        <td>
+                            #{row.isEgg}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <br />
+        Total Number Of Cake #{cakeADMB.list.size()}
+    </h:body>
+</html>
+
